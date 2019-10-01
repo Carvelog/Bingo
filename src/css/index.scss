@@ -1,0 +1,85 @@
+$player-card: 'cartonPlayer';
+$cpu-card: 'cartonCpu';
+$color: rgb(255, 187, 0);
+
+@mixin players-card($member-card, $color) {
+    background: $color;
+    display:grid;
+    align-items: center;
+    padding: 5%;
+    border-radius: 10px;
+    .#{$member-card} {
+        border: solid black;
+        background: white;
+        font-size: 25px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        .numCel {
+            justify-self: center;
+        }
+    }
+
+    .playerName {
+        margin: auto;
+        font-size: 25px;
+        font-weight: bold;
+    }
+}
+body {
+    .mesa {
+        width: 600px;
+        border: solid black;
+        background: $color;
+        padding: 10px;
+        display: grid;
+        margin: auto;
+        grid-template-columns: 2fr 1fr 2fr;
+        justify-content: space-around;
+        
+        .player {
+            @include players-card($player-card, lightblue);
+        }
+
+        .bomboZone {
+            display: grid;
+            grid-template-areas: "." "bombo" "."
+                                "." "boton" ".";
+            .bombo{
+                border: solid black;
+                box-shadow: 20px 20px black;
+                border-radius: 50px;
+                background-image: radial-gradient(farthest-corner at 25% 25%,white, grey,black);
+                font-size: 50px;
+                margin: 20%;
+                display: flex;
+                justify-content: center;
+                #numero {
+                    margin: 0;
+                }
+            }
+
+            #boton {
+                border: solid black;
+                cursor: pointer;
+                justify-self: center;
+                border-radius: 10px;
+                background: $color;
+                font-weight: bold;
+            }
+        }
+
+        .cpu {
+            @include players-card($cpu-card, coral);
+        }
+    }
+}
+
+.tachado {
+    text-decoration: line-through;
+    color: red;
+}
+
+.win {
+    font-weight: bold;
+    margin: auto;
+}
